@@ -15,8 +15,10 @@ sys.path.append(current_dir)
 
 
 class TTSEngine(TTSInterface):
-    def __init__(self):
+    def __init__(self, voice_name: str | None = None):
         self.engine = pyttsx3.init()
+        if voice_name is not None:
+            self._select_voice(voice_name)
         self.temp_audio_file = "temp"
         self.file_extension = "aiff"
         self.new_audio_dir = "cache"
@@ -24,6 +26,21 @@ class TTSEngine(TTSInterface):
 
         if not os.path.exists(self.new_audio_dir):
             os.makedirs(self.new_audio_dir)
+
+    def _select_voice(self, voice_name: str) -> None:
+        for voice in self.engine.getProperty("voices"):
+            if voice.name.casefold() == voice_name.casefold():
+                self.engine.setProperty("voice", voice.id)
+                logger.info(f"Selected local pyttsx3 voice: {voice.name}")
+                return
+
+        available_names = [
+            voice.name for voice in self.engine.getProperty("voices")
+        ]
+        raise ValueError(
+            f"pyttsx3 voice {voice_name!r} was not found. "
+            f"Available voices: {available_names}"
+        )
 
     #! This method (pyttsx3) is not thread safe. It will blow if it's called from multiple threads at the same time.
     def generate_audio(self, text, file_name_no_ext=None):

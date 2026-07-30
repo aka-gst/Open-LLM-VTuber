@@ -1,0 +1,51 @@
+Local Voice Baseline — Windows — 2026-07-30
+
+Available local pyttsx3 voices (sanitized; registry IDs and paths omitted)
+- voice-01 | Microsoft Irina Desktop - Russian | ru-RU
+- voice-02 | Microsoft Zira Desktop - English (United States) | en-US
+- voice-03 | Microsoft David Desktop - English (United States) | en-US
+
+Selected backends
+- ASR backend: sherpa_onnx_asr
+- ASR model type: nemo_ctc
+- ASR model: sherpa-onnx-nemo-ctc-giga-am-v2-russian-2025-04-19
+- ASR provider: CPU
+- TTS backend: pyttsx3_tts
+- TTS engine: Windows SAPI
+- TTS voice: Microsoft Irina Desktop - Russian
+- Audio cloud API calls: none
+
+ASR microphone smoke test
+- Input: local DirectShow Focusrite microphone, mono PCM, 16 kHz, 5 seconds
+- Expected phrase: проверка локального голоса семь четыре два девять
+- Transcript: проверка локального голоса семь четыре два девять
+- Unique number: 7429 recognized as "семь четыре два девять"
+- Expected-word coverage: 1.000
+- Result: PASS
+
+TTS smoke test
+- Phrase: локальный голос работает; проверка семь четыре два девять завершена
+- Generated locally: yes
+- Generated audio size: 238260 bytes
+- Local ffplay exit code: 0
+- External voice API calls: none
+- Physical audibility confirmation: CONFIRMED BY USER
+- Result: PASS
+
+Feedback-loop observation
+- Local speakers enabled for one TTS playback
+- Observation window after playback: 15 seconds
+- UI state after observation: idle
+- New UI messages: 0
+- Server ASR event count: 0
+- Server TTS generation event count: 0
+- Server error count: 0
+- Repeated ASR-to-TTS cycles: 0
+- Result: PASS for absence of an infinite loop during the observation window
+- Limitation: the browser microphone control did not deliver an ASR event, so this is not proof of a successful end-to-end browser voice turn
+
+Integrity and scope
+- Russian ASR model SHA-256: d0ce4aef25f58d495781ee8f05320d9e51b821f47804e07aa6549b53a72f67e8
+- Source diff SHA-256 before evidence write: 2412a1e52b972c775e16c366a8dfd535e4e373d8c98af7ccef17c48f860a8337
+- Source files changed during baseline execution: none
+- Existing approved local TTS source changes remained present and unchanged
