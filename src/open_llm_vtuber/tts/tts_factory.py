@@ -1,4 +1,5 @@
 from typing import Type
+
 from .tts_interface import TTSInterface
 
 
@@ -26,7 +27,7 @@ class TTSFactory:
         elif engine_type == "pyttsx3_tts":
             from .pyttsx3_tts import TTSEngine as Pyttsx3TTSEngine
 
-            return Pyttsx3TTSEngine()
+            return Pyttsx3TTSEngine(voice_name=kwargs.get("voice_name"))
         elif engine_type == "cosyvoice_tts":
             from .cosyvoice_tts import TTSEngine as CosyvoiceTTSEngine
 
