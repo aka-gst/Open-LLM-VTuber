@@ -32,7 +32,7 @@ but it is not presented as proof of a complete browser-to-ASR-to-TTS turn.
 ## Automated reproduction
 
 ```bash
-python -m pip install pytest pyttsx3 loguru pydantic PyYAML
+python -m pip install pytest pyttsx3 loguru pydantic PyYAML chardet
 pytest -q tests/portfolio
 ```
 
