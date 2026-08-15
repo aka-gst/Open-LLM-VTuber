@@ -37,6 +37,26 @@ ENGLISH README | [中文 README](./README.CN.md) | [한국어 README](./README.K
 
 > :warning: This project is in its early stages and is currently under **active development**.
 
+## Fork portfolio case: local Russian voice QA
+
+This fork is based on the upstream
+[Open-LLM-VTuber](https://github.com/Open-LLM-VTuber/Open-LLM-VTuber) project.
+The upstream application and its star count belong to the original maintainers.
+
+My contribution focuses on a reproducible, fully local Windows voice setup:
+
+- added configurable `pyttsx3` system-voice selection;
+- connected the selected voice from the Pydantic configuration to the TTS factory;
+- verified Russian speech recognition with a local `sherpa-onnx` model;
+- verified offline Windows SAPI speech synthesis without cloud audio APIs;
+- recorded smoke-test evidence and limitations instead of claiming an unverified
+  end-to-end result;
+- added automated tests and a small GitHub Actions workflow for the changed path.
+
+See [the concise QA report](evidence/README.md) for scope, results, limitations,
+and reproduction steps. The implementation lives on the
+`feat/local-agent-gateway` branch until it is merged into this fork's `main`.
+
 > :warning: If you want to run the server remotely and access it on a different machine, such as running the server on your computer and access it on your phone, you will need to configure `https`, because the microphone on the front end will only launch in a secure context (a.k.a. https or localhost). See [MDN Web Doc](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia). Therefore, you should configure https with a reverse proxy to access the page on a remote machine (non-localhost).
 
 
@@ -151,7 +171,6 @@ Thanks our contributors and maintainers for making this project possible.
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=Open-LLM-VTuber/open-llm-vtuber&type=Date)](https://star-history.com/#Open-LLM-VTuber/open-llm-vtuber&Date)
-
 
 
 

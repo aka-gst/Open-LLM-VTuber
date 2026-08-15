@@ -679,12 +679,23 @@ class CartesiaTTSConfig(I18nMixin):
         ),
     }
 
+class Pyttsx3TTSConfig(I18nMixin):
+    voice_name: Optional[str] = Field(None, alias="voice_name")
+
+    DESCRIPTIONS: ClassVar[Dict[str, Description]] = {
+        "voice_name": Description(
+            en="Exact name of a local pyttsx3 system voice",
+            zh="本地 pyttsx3 系统语音的精确名称",
+        )
+    }
+
 
 class TTSConfig(I18nMixin):
     """Configuration for Text-to-Speech."""
 
     tts_model: Literal[
         "azure_tts",
+        "pyttsx3_tts",
         "bark_tts",
         "edge_tts",
         "cosyvoice_tts",
@@ -705,6 +716,10 @@ class TTSConfig(I18nMixin):
     ] = Field(..., alias="tts_model")
 
     azure_tts: Optional[AzureTTSConfig] = Field(None, alias="azure_tts")
+    pyttsx3_tts: Pyttsx3TTSConfig = Field(
+        default_factory=Pyttsx3TTSConfig,
+        alias="pyttsx3_tts",
+    )
     bark_tts: Optional[BarkTTSConfig] = Field(None, alias="bark_tts")
     edge_tts: Optional[EdgeTTSConfig] = Field(None, alias="edge_tts")
     cosyvoice_tts: Optional[CosyvoiceTTSConfig] = Field(None, alias="cosyvoice_tts")
